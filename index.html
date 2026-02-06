@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тойға шақырту</title>
 
+<style>
+body{
+font-family: Arial, sans-serif;
+margin:0;
+text-align:center;
+background:#fdf6f0;
+}
+
+header{
+background:#b76e79;
+color:white;
+padding:40px;
+}
+
+section{
+padding:40px;
+}
+
+.timer{
+font-size:24px;
+color:#b76e79;
+margin-top:20px;
+}
+
+input, select, button{
+padding:10px;
+margin:5px;
+width:200px;
+}
+
+button{
+background:#b76e79;
+color:white;
+border:none;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>💍 Нұрлан & Айдана</h1>
+<p>Сіздерді тойымызға шақырамыз</p>
+</header>
+
+<section>
+<h2>📅 Той күні</h2>
+<p>20 Тамыз 2026 — 18:00</p>
+
+<div class="timer" id="timer"></div>
+</section>
+
+<section>
+<h2>📍 Мекенжай</h2>
+<p>Алматы қаласы, Royal Hall</p>
+
+<iframe 
+src="https://maps.google.com/maps?q=Almaty&t=&z=13&ie=UTF8&iwloc=&output=embed"
+width="300" height="200">
+</iframe>
+</section>
+
+<section>
+<h2>✅ Қатысу растау</h2>
+
+<form onsubmit="sendForm(event)">
+<input type="text" id="name" placeholder="Атыңыз" required>
+<br>
+<select id="status">
+<option>Келемін</option>
+<option>Келмеймін</option>
+</select>
+<br>
+<button type="submit">Жіберу</button>
+</form>
+
+<p id="result"></p>
+
+</section>
+
+<script>
+// Таймер
+let weddingDate = new Date("Aug 20, 2026 18:00:00").getTime();
+
+setInterval(function(){
+let now = new Date().getTime();
+let diff = weddingDate - now;
+
+let days = Math.floor(diff / (1000*60*60*24));
+document.getElementById("timer").innerHTML =
+"Тойға дейін: " + days + " күн";
+},1000);
+
+
+// RSVP форма
+function sendForm(e){
+e.preventDefault();
+
+let name = document.getElementById("name").value;
+let status = document.getElementById("status").value;
+
+document.getElementById("result").innerHTML =
+"Рахмет! Жауабыңыз қабылданды.";
+}
+</script>
+
+</body>
+</html>
